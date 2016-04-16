@@ -11,12 +11,20 @@ class ProductView {
 		this.addButton = document.getElementById('addButton');
 
 		this.addButton.addEventListener('click', () => this.addProduct());
+		this.searchInput.addEventListener('keyup', (event) => this.addOnEnter(event));
 
 		this.productManager.getProducts();
 	}
 
 	search() {
 
+	}
+
+	addOnEnter(event) {
+		if (event.keyCode == 13) {
+			this.addProduct();
+			return false;
+		}
 	}
 
 	addProduct() {
