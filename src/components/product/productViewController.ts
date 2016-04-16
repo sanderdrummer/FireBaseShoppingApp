@@ -29,8 +29,12 @@ class ProductView {
 	}
 
 	addProduct() {
-		var productName = this.searchInput.value;
-		console.log(this, productName, 'asdasd');
+		var name = this.searchInput.value;
+		console.log(this, name, 'asdasd');
+		if (name) {
+			this.productManager.addProduct({ name: name });
+			this.searchInput.value = '';
+		}
 	}
 
 }

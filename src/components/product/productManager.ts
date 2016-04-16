@@ -9,7 +9,10 @@ class ProductManager {
 	constructor() {
 		this.products = {};
 		this.productView = new ProductView('');
-		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/products')
+		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/products');
+
+		this.fireBase.on('child_added', 
+			(childSnapshot, prevChildKey) => this.getProducts());
 	}
 
 	getProducts() {
@@ -21,8 +24,13 @@ class ProductManager {
 		});
 	}
 
-	addProduct(product:Product) {
-		this.fireBase.push(product);
+	addProduct(config:any) {
+
+		var product = new Product('', config);
+		console.log(product, '654645654');
+		this.fireBase.push(product, () => {
+			this.getProducts();	
+		});
 	}
 
 	removeProduct(id) {

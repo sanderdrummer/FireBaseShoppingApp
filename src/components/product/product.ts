@@ -1,5 +1,4 @@
-
-
+///<reference path="../../../definitions/firebase.d.ts" />
 
 class Product {
 	id: string;
@@ -20,6 +19,7 @@ class Product {
 			
 		}
 	}
+
 	setAmount(amount:number) {
 		this.amount = amount;
 	}
