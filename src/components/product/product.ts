@@ -1,4 +1,6 @@
 
+
+
 class Product {
 	id: string;
 	name: string;
@@ -18,7 +20,6 @@ class Product {
 			
 		}
 	}
-
 	setAmount(amount:number) {
 		this.amount = amount;
 	}

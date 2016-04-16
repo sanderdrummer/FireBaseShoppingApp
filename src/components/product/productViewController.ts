@@ -1,13 +1,14 @@
 import ProductManager = require('./productManager');
 
 class ProductView {
-	searchInput: Element;
+	searchInput: HTMLInputElement;
 	addButton: Element;
 	productManager: ProductManager;
 
 	constructor() {
 		this.productManager = new ProductManager();
-		this.searchInput = document.getElementById('searchInput');
+		this.searchInput = <HTMLInputElement>document
+			.getElementById('searchInput');
 		this.addButton = document.getElementById('addButton');
 
 		this.addButton.addEventListener('click', () => this.addProduct());
