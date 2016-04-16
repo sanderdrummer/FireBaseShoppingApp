@@ -3,6 +3,7 @@ import Product = require('./product');
 class ProductView {
 	template: string;
 	view: Element;
+
 	constructor(template:string) {
 		this.template = template;
 		this.view = document.getElementById('view');

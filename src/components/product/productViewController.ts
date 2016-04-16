@@ -1,24 +1,40 @@
 import ProductManager = require('./productManager');
+import ProductView = require('./productView');
 
-class ProductView {
+class ProductViewController {
 	searchInput: HTMLInputElement;
 	addButton: Element;
 	productManager: ProductManager;
+	productView: ProductView;
+
 
 	constructor() {
 		this.productManager = new ProductManager();
 		this.searchInput = <HTMLInputElement>document
 			.getElementById('searchInput');
 		this.addButton = document.getElementById('addButton');
+		this.productView = new ProductView('');
 
 		this.addButton.addEventListener('click', () => this.addProduct());
 		this.searchInput.addEventListener('keyup', (event) => this.addOnEnter(event));
+		this.searchInput.addEventListener('keyup', () => this.filterProducts());
 
 		this.productManager.getProducts();
 	}
 
-	search() {
+	filterProducts(){
+		var name = this.searchInput.value;
+		var filteredProducts = {};
+		var product;
 
+		Object.keys(this.productManager.products).map((id) => {
+			product = this.productManager.products[id];
+			if (product.name.indexOf(name) > -1) {
+				filteredProducts[id] = product;
+			}
+		});
+
+		this.productView.render(filteredProducts)
 	}
 
 	addOnEnter(event) {
@@ -36,7 +52,6 @@ class ProductView {
 			this.searchInput.value = '';
 		}
 	}
-
 }
 
-export = ProductView;
+export = ProductViewController;

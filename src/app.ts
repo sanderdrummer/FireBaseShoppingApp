@@ -3,7 +3,6 @@ declare function require(string): string;
 
 require('../style/main.less');
 
-import DataManager = require('./components/dataManager');
 import ProductViewController = require('./components/product/productViewController');
 
 var productViewController = new ProductViewController();
