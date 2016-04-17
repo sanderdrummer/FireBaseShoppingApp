@@ -10,7 +10,11 @@ class ListView {
 
 	render(list:List) {
 		var product;
-
+		this.template = `
+		<h1>${list.name}</h1>
+		das ist ein test
+		<a href="#/lists/${list.name}/addProducts">+ Produkt</a>
+		`;
 		// this.template = Object.keys(products).map((id) => {
 		// 	product = products[id];
 		// 	return `<li class="product">

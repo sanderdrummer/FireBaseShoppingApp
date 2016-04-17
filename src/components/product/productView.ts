@@ -1,34 +1,34 @@
 import Product = require('./product');
 
 class ProductView {
-	template: string;
 	view: Element;
 
-	constructor(template:string) {
-		this.template = template;
-		this.view = document.getElementById('view');
+	constructor() {
+		this.view = document.getElementById('products');
 	}
 
 	render(products:{}) {
-		var product;
 
-		this.template = `
+		this.view.innerHTML = `
 		<input id="searchInput" value="" placeholder="search" type="text">
         <button id="addButton">Test</button>
+        <div id="productsList"></div>
 		`;
 
-		this.template += Object.keys(products).map((id) => {
+		this.updateList(products);
+	}
+
+	updateList(products: {}) {
+		var product;
+		var productsElement = document.getElementById('productsList')
+		var template = Object.keys(products).map((id) => {
 			product = products[id];
 			return `<li class="product">
 				${product.name}
 			</li>`
 		}).join('');
-
-
-
-		this.view.innerHTML = this.template;
+		productsElement.innerHTML = template;
 	}
-
 }
 
 export = ProductView;

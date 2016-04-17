@@ -16,7 +16,9 @@ class ListsController {
 		this.listsView = new ListsView();
 		this.listController = new ListController();
 		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/lists');
+	}
 
+	init() {
 		this.getLists();
 	}
 
@@ -41,7 +43,6 @@ class ListsController {
 				config = res[name];
 				this.lists[name] = new List(name);
 			});
-
 		}
 	
 		this.listsView.update(this.lists);
@@ -51,9 +52,7 @@ class ListsController {
 	updateHandlers() {
 		var listInput = document.getElementById('listInput');
 		var addListButton = document.getElementById('addListButton');
-		var listsElem = document.getElementById('lists');
 
-		listsElem.addEventListener('click', (e) => this.selectList(e))
 		addListButton.addEventListener('click', () => this.addList(listInput));
 	}
 
@@ -64,15 +63,13 @@ class ListsController {
 		listInput.value = '';
 	}
 
-	selectList(event) {
-		var list;
-		var selectedElem;
-		if (event.target && this.lists[event.target.id]) {
-			list = this.lists[event.target.id];
-			list.show();
-			console.log(list);
-		}
-	}
+	// selectList(event) {
+	// 	var list;
+	// 	var selectedElem;
+	// 	if (event.target && this.lists[event.target.id]) {
+	// 		window.location.hash = '#/lists/' + event.target.id;
+	// 	}
+	// }
 }
 
 export = ListsController;

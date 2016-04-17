@@ -12,8 +12,8 @@ class ListsView {
 		var listsTemplate;
 		listsTemplate = Object.keys(lists).map((name) => {
 			list = lists[name];
-			return `<li class="list" id="${name}">
-				${list.name}
+			return `<li class="list">
+				<a class="list-item" href="#/lists/${list.name}">${list.name}</a>
 			</li>`
 		}).join('');
 
