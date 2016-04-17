@@ -1,15 +1,20 @@
 class ListsView {
 
 	view: Element;
+	products: Element;
 
 	constructor(){
 		this.view = document.getElementById('view');
+		this.products = document.getElementById('products');
 
 	}
 
 	update(lists:{}){
 		var list;
 		var listsTemplate;
+		
+		this.products.innerHTML = '';
+
 		listsTemplate = Object.keys(lists).map((name) => {
 			list = lists[name];
 			return `<li class="list">

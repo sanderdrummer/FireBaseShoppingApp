@@ -29,7 +29,11 @@ class ListController {
 	}
 
 	addProductToList(params) {
-
+		var product = this.productController.getProduct(params.product);
+		console.log(params, product);
+		this.list.toAdd[product.name] = product.name;
+		this.list.update();
+		this.listView.render(this.list);
 	}
 }
 

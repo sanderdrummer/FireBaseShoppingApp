@@ -8,6 +8,7 @@ class ProductViewController {
 	filteredProducts: {};
 	products: {};
 	fireBase: any;
+	list: string;
 
 	constructor() {
 		this.productView = new ProductView();
@@ -18,8 +19,9 @@ class ProductViewController {
 		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/products');
 	}
 
-	init() {
+	init(params) {
 		this.getProducts();
+		this.list = params.list;
 	}
 
 	updateHandlers(){
@@ -46,6 +48,12 @@ class ProductViewController {
 		});
 	}
 
+	getProduct(name) {
+		if (this.products[name]) {
+			return this.products[name];
+		}
+	}
+
 	updateProducts(res) {
 		var config;
 
@@ -56,7 +64,7 @@ class ProductViewController {
 	}
 
 	updateView() {
-		this.productView.render(this.products);
+		this.productView.render(this.products, this.list);
 		this.updateHandlers();
 	}
 
@@ -73,7 +81,7 @@ class ProductViewController {
 			}
 		});
 
-		this.productView.updateList(this.filteredProducts)
+		this.productView.updateList(this.filteredProducts, this.list);
 	}
 
 	addOnEnter(event) {
@@ -81,14 +89,6 @@ class ProductViewController {
 			this.addProduct();
 			return false;
 		}
-	}
-
-	addProductToListByClick() {
-
-	}
-
-	addProductToListByInput() {
-
 	}
 
 	addProduct() {

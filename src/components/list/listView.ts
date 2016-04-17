@@ -3,26 +3,45 @@ import List = require('./list');
 class ListView {
 	template: string;
 	view: Element;
+	products: Element;
+
 
 	constructor() {
 		this.view = document.getElementById('view');
+		this.products = document.getElementById('products');
+
 	}
 
 	render(list:List) {
-		var product;
+
+		this.products.innerHTML = '';
+
 		this.template = `
 		<h1>${list.name}</h1>
 		das ist ein test
 		<a href="#/lists/${list.name}/addProducts">+ Produkt</a>
+		<div id="toAdd"></div>
+		<div id="alreadyAdded"></div>
 		`;
-		// this.template = Object.keys(products).map((id) => {
-		// 	product = products[id];
-		// 	return `<li class="product">
-		// 		${product.name}
-		// 	</li>`
-		// }).join('');
 
 		this.view.innerHTML = this.template;
+
+		this.updateList(list, 'toAdd');
+		this.updateList(list, 'alreadyAdded');
+	}
+
+	updateList(list:List, type:string){
+		var listElement = document.getElementById(type);
+		var product;
+		var template = Object.keys(list[type]).map((id) => {
+			product = list[id];
+			return `<li class="product">
+				<a href="#/lists/${list}/addlist/${product.name}">
+					${product.name}
+				</a>
+			</li>`
+		}).join('');
+		listElement.innerHTML = template;
 	}
 
 }

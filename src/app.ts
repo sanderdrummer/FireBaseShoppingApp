@@ -1,6 +1,4 @@
 declare function require(string): string;
-///<reference path="../definitions/firebase.d.ts" />
-
 require('../style/main.less');
 
 import ProductViewController = require('./components/product/productController');
@@ -33,7 +31,7 @@ router.register('/', (params) => {
 	console.log(params);
 	listController.show(params)
 }).register('/lists/:list/addProducts', (params) => {
-	productController.init();
-}).register('/lists/:list/addProducts/:product/', (params) => {
+	productController.init(params);
+}).register('/lists/:list/addProducts/:product', (params) => {
 	listController.addProductToList(params);
 });

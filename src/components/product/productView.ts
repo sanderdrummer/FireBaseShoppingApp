@@ -7,7 +7,7 @@ class ProductView {
 		this.view = document.getElementById('products');
 	}
 
-	render(products:{}) {
+	render(products: {}, list: string) {
 
 		this.view.innerHTML = `
 		<input id="searchInput" value="" placeholder="search" type="text">
@@ -15,16 +15,18 @@ class ProductView {
         <div id="productsList"></div>
 		`;
 
-		this.updateList(products);
+		this.updateList(products, list);
 	}
 
-	updateList(products: {}) {
+	updateList(products: {}, list:string) {
 		var product;
 		var productsElement = document.getElementById('productsList')
 		var template = Object.keys(products).map((id) => {
 			product = products[id];
 			return `<li class="product">
-				${product.name}
+				<a href="#/lists/${list}/addProducts/${product.name}">
+					${product.name}
+				</a>
 			</li>`
 		}).join('');
 		productsElement.innerHTML = template;
