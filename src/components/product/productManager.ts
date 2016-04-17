@@ -51,6 +51,10 @@ class ProductManager {
 	updateView() {
 		this.productView.render(this.products);
 	}
+
+	getProduct(id) {
+		return this.products[id] || null;
+	}
 }
 
 export = ProductManager;

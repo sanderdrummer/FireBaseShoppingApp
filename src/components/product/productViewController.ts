@@ -6,7 +6,7 @@ class ProductViewController {
 	addButton: Element;
 	productManager: ProductManager;
 	productView: ProductView;
-
+	filteredProducts: {};
 
 	constructor() {
 		this.productManager = new ProductManager();
@@ -14,6 +14,7 @@ class ProductViewController {
 			.getElementById('searchInput');
 		this.addButton = document.getElementById('addButton');
 		this.productView = new ProductView('');
+		this.filteredProducts = {};
 
 		this.addButton.addEventListener('click', () => this.addProduct());
 		this.searchInput.addEventListener('keyup', (event) => this.addOnEnter(event));
@@ -22,19 +23,20 @@ class ProductViewController {
 		this.productManager.getProducts();
 	}
 
-	filterProducts(){
+	filterProducts() {
 		var name = this.searchInput.value;
-		var filteredProducts = {};
 		var product;
+		
+		this.filteredProducts = {};
 
 		Object.keys(this.productManager.products).map((id) => {
 			product = this.productManager.products[id];
 			if (product.name.indexOf(name) > -1) {
-				filteredProducts[id] = product;
+				this.filteredProducts[id] = product;
 			}
 		});
 
-		this.productView.render(filteredProducts)
+		this.productView.render(this.filteredProducts)
 	}
 
 	addOnEnter(event) {
@@ -45,12 +47,25 @@ class ProductViewController {
 	}
 
 	addProduct() {
+		this.addProductToFirebase();
+	}
+
+	addProductToListByClick() {
+
+	}
+
+	addProductToListByInput() {
+
+	}
+
+	addProductToFirebase() {
 		var name = this.searchInput.value;
-		console.log(this, name, 'asdasd');
-		if (name) {
+		var notInFilteredList = Object.keys(this.filteredProducts).length === 0;
+		
+		if (name && notInFilteredList) {
 			this.productManager.addProduct({ name: name });
-			this.searchInput.value = '';
 		}
+		this.searchInput.value = '';
 	}
 }
 

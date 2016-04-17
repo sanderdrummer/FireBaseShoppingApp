@@ -4,5 +4,6 @@ declare function require(string): string;
 require('../style/main.less');
 
 import ProductViewController = require('./components/product/productViewController');
+import ListsController = require('./components/lists/listsController');
 
-var productViewController = new ProductViewController();
+var productViewController = new ListsController();
