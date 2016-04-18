@@ -24,14 +24,17 @@ if (!window.location.hash) {
 router.register('/', (params) => {
 	listsController.init();
 })
-.register('/lists/:list', (params) => {
-	console.log(params);
-	listController.show(params)
-}).register('/lists/:list/destroy', (params) => {
-	console.log(params);
-	listController.show(params)
-}).register('/lists/:list/addProducts', (params) => {
-	productController.init(params);
-}).register('/lists/:list/addProducts/:product', (params) => {
-	listController.addProductToList(params);
-});
+	.register('/lists/:list', (params) => {
+		console.log(params);
+		listController.show(params)
+	}).register('/lists/:list/destroy', (params) => {
+		console.log(params);
+		listController.show(params)
+	}).register('/lists/:list/addProducts', (params) => {
+		productController.init(params);
+	}).register('/lists/:list/addProducts/:product', (params) => {
+		productController.selectProductAmount(params);
+	}).register('/lists/:list/addProductToList/:product/:amount', (params) => {
+		listController.addProductToList(params);
+	})
+	;

@@ -37,11 +37,10 @@ class ListsController {
 
 	updateLists(res) {
 		var config;
-
 		if (res) {
 			Object.keys(res).map((name) => {
 				config = res[name];
-				this.lists[name] = new List(name);
+				this.lists[name] = new List(config);
 			});
 		}
 	
@@ -58,7 +57,6 @@ class ListsController {
 
 	addList(listInput) {
 		var value = listInput.value;
-		console.log(value, 'asdkshdf');
 		this.listController.addAndShowNewList(value);
 		listInput.value = '';
 	}

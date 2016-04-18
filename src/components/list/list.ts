@@ -7,11 +7,11 @@ class List {
 	name: string;
 	fireBase: any;
 
-	constructor(name) {
-		this.toAdd = {};
-		this.alreadyAdded = {};
-		this.name = name;
-		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/lists/' + name);
+	constructor(config) {
+		this.toAdd = config.toAdd || {};
+		this.alreadyAdded = config.alreadyAdded || {};
+		this.name = config.name.trim();
+		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/lists/' + config.name.trim());
 	}
 
 	update() {

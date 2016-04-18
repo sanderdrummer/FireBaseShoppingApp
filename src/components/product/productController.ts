@@ -105,6 +105,10 @@ class ProductViewController {
 		}
 		this.searchInput.value = '';
 	}
+
+	selectProductAmount(param){
+		this.productView.showAmount(param);
+	}
 }
 
 export = ProductViewController;

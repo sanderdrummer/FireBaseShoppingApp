@@ -10,6 +10,10 @@ class ProductView {
 	render(products: {}, list: string) {
 
 		this.view.innerHTML = `
+        <div id="selectAmount" class="hidden">
+			<input type="number" placeholder="Anzahl" />
+        	<a href="#/" id="addProductButton">+</a>
+        </div>
 		<input id="searchInput" value="" placeholder="search" type="text">
         <button id="addButton">Test</button>
         <div id="productsList"></div>
@@ -30,6 +34,18 @@ class ProductView {
 			</li>`
 		}).join('');
 		productsElement.innerHTML = template;
+	}
+
+	showAmount(params) {
+
+		var selectAmount = <HTMLInputElement>document.getElementById('selectAmount');
+		var addProductButton = document.getElementById('addProductButton');
+		selectAmount.classList.remove('hidden');
+		selectAmount.addEventListener('keyup', (event) => this.updateLinkText(addProductButton, params,event))
+	}
+
+	updateLinkText(elem, params, event) {
+		elem.href = `#/lists/${params.list}/addProductToList/${params.product}/${event.target.value}`;
 	}
 }
 

@@ -32,15 +32,14 @@ class ListView {
 
 	updateList(list:List, type:string){
 		var listElement = document.getElementById(type);
-		var product;
-		var template = Object.keys(list[type]).map((id) => {
-			product = list[id];
-			return `<li class="product">
-				<a href="#/lists/${list}/addlist/${product.name}">
-					${product.name}
-				</a>
-			</li>`
+		var template;
+		template = Object.keys(list[type]).map((product) => {
+			console.log(product);
+			return `
+				<li>${product}</li>
+			`;
 		}).join('');
+		
 		listElement.innerHTML = template;
 	}
 
