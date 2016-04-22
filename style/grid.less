@@ -1,0 +1,126 @@
+* { 
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.blue{
+    background-color: blue;
+}
+
+.centerAbs(){
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+img{
+  max-width: 100%;
+}
+
+img.stretch{
+    width: 100%;
+}
+
+.container{
+  max-width: @maxWidth;
+  min-width: @minWidth;
+  padding: 0 @leading;
+  margin: 0 auto;
+}
+
+[class^="col-"]{
+  position: relative;
+  min-height: 1px;
+  padding-left: @leading;
+  padding-right: @leading;
+  float:left;
+}
+
+.newCol(@number){
+  .col-@{number}{
+      width: percentage(@number/@colCount);
+  }
+}
+.newOffset(@number){
+  .off-@{number}{
+    margin-left: percentage(@number/@colCount);
+  }
+}
+
+
+.colLoop (@index) when (@index > 0) {
+
+  .newCol(@index);
+  .newOffset(@index);
+  .colLoop(@index - 1);
+}
+.colLoop(@colCount);
+
+.grid{
+  margin-left: -@leading;
+  margin-right: -@leading;
+  .clearfix();
+  margin-top: @leading;
+}
+
+.newMargin(@value){
+  .m-t-@{value}{
+    margin-top: unit(@value*@baseLineHeight, rem);
+  }
+  .m-r-@{value}{
+    margin-right: unit(@value*@baseLineHeight, rem);
+  }
+  .m-b-@{value}{
+    margin-bottom: unit(@value*@baseLineHeight, rem);
+  }
+  .m-l-@{value}{
+    margin-left: unit(@value*@baseLineHeight, rem);
+  }
+}
+
+.marginLoop(@index) when (@index > 0){
+
+  .newMargin(@index);
+
+  .marginLoop(@index - 1);
+
+}
+
+.marginLoop(5);
+
+@media only screen and (max-width: 1040px) {
+    .grid{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+    [class^="col-"]{
+      width: 90%;
+      padding-left: 0px;
+      padding-right: 0px;
+
+    }
+    .container{
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      margin-left: 0px;
+      margin-right: 0px;
+      padding: 1.5rem;
+    }
+}

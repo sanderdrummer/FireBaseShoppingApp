@@ -1,0 +1,30 @@
+@import 'components/gallery.less';
+@import 'components/box.less';
+
+
+.animate(@type , @time){
+    -o-transition:@type @time;
+    -moz-transition:@type @time;
+    -webkit-transition:@type @time;
+    transition:@type @time;
+    transition-timing-function:ease;
+
+}
+
+.animated{
+    .animate(all, 500ms);
+}
+
+.shadow{
+    box-shadow: @boxShadow;
+}
+
+.shadow-button{
+
+    box-shadow: @boxShadow;
+    cursor: pointer;
+    .animate(all, 200ms);
+    &:hover{
+        box-shadow: none;
+    }
+}
