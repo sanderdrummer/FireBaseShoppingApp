@@ -43,11 +43,12 @@ class ListController {
 		var product = this.productController.getProduct(params.product);
 		product.amount = params.amount;
 		product.rating += 1;
-		product.update();
 		this.list.toAdd[product.name] = product.getData();
 		this.list.update();
 		this.listView.render(this.list);
 		this.productController.updateView();
+		console.log(window.location.hash );
+		window.location.hash = `#/lists/${params.list}/addProductToList`;
 	}
 
 	addProductToBasket(params) {

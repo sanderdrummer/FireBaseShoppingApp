@@ -9,18 +9,24 @@ class ProductView {
 
 	render(products: {}, list: string) {
 
+		this.updateList(products, list);
+
 		this.view.innerHTML = `
         <div id="selectAmount" class="hidden">
-			<input type="number" placeholder="Anzahl" />
-        	<a href="#/" id="addProductButton">+</a>
+        	<div class="container">
+				<input class="grow"type="text" placeholder="Anzahl" />
+			</div>
+        	<div class="container">
+        		<a class="button grow" href="#/" id="addProductButton">Produkt zur Liste</a>
+			</div>
         </div>
 		<input id="searchInput" value="" placeholder="search" type="text">
-        <button id="addButton">Test</button>
+        <button id="addButton">+ Produkt</button>
         <div id="productsList"></div>
-		<a href="#/lists/${list}"> Fertig </a>
+        <div class="container">
+			<a class="button grow" href="#/lists/${list}"> Fertig </a>
+		</div>
 		`;
-
-		this.updateList(products, list);
 	}
 
 	updateList(products: {}, list:string) {

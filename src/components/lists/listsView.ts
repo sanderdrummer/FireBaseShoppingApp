@@ -23,8 +23,10 @@ class ListsView {
 		}).join('');
 
 		var template = `
-		<input id="listInput" value="" placeholder="neueListe" type="text">
-        <button id="addListButton">Test</button>
+		<div class="container">
+			<input id="listInput" class="grow m-r-1" required value="" placeholder="neueListe" type="text">
+        	<button id="addListButton">neue Liste hinzufügen</button>
+		</div>
         <div id="lists">${listsTemplate}<div>
 		`;
 

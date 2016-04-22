@@ -52,21 +52,24 @@ class ListsController {
 		var addListButton = document.getElementById('addListButton');
 
 		addListButton.addEventListener('click', () => this.addList(listInput));
+		listInput.addEventListener('keyup',
+			(event) => this.addOnEnter(event, listInput));
+	}
+
+	addOnEnter(event, listInput) {
+		if (event.keyCode == 13) {
+			this.addList(listInput);
+			return false;
+		}
 	}
 
 	addList(listInput) {
 		var value = listInput.value;
-		this.listController.addAndShowNewList(value);
-		listInput.value = '';
+		if (value) {
+			this.listController.addAndShowNewList(value);
+			listInput.value = '';
+		}
 	}
-
-	// selectList(event) {
-	// 	var list;
-	// 	var selectedElem;
-	// 	if (event.target && this.lists[event.target.id]) {
-	// 		window.location.hash = '#/lists/' + event.target.id;
-	// 	}
-	// }
 }
 
 export = ListsController;

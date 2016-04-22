@@ -14,3 +14,27 @@
 @import 'flex/marginClasses.less';
 @import 'forms.less';
 @import 'components.less';
+
+.product,
+.list{
+  list-style-type: none;
+  text-align:center;
+  border-bottom: solid 1px @light;
+  padding: @leading/2;
+}
+
+a.button{
+  border: solid 1px @highlight;
+  padding: @leading;
+  text-align: center;
+  margin-bottom: @leading;
+}
+
+#products {
+  overflow-y: scroll;
+  max-height: 100%;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  top: 0;
+}

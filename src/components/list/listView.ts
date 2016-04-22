@@ -18,14 +18,21 @@ class ListView {
 
 		this.template = `
 		<h1>${list.name}</h1>
-		das ist ein test
-		<a href="#/lists/${list.name}/addProducts">+ Produkt</a>
-		<h2>in den Korb</h2>
+		<div class="container">
+			<a class="button grow" href="#/lists/${list.name}/addProducts">+ Produkt</a>
+		</div>
+		<h2>noch in den Korb</h2>
 		<div id="toAdd"></div>
-		<h2>schon im Korb</h2>
+		<h2>schon dabei</h2>
 		<div id="alreadyAdded"></div>
-		<a href="#/lists/${list.name}/reset">Leeren</a>
-		<a class="list-item" href="#/lists/${list.name}/destroy">löschen</a>
+		<div class="container">
+			<a class="button grow" href="#/lists/${list.name}/reset">Leeren</a>
+		</div>
+		<div class="container">
+			<a class="button grow" href="#/lists/${list.name}/destroy">löschen</a>
+		</div>
+		<a 
+		<a class="list-item" 
 		`;
 
 		this.view.innerHTML = this.template;
@@ -46,7 +53,7 @@ class ListView {
 			url = type === 'toAdd' ? `#/lists/${list.name}/addProductToBasket/${product}` : `#/lists/${list.name}/revertProductFromBasket/${product}`;
 
 			return `
-				<li><a href="${url}">${product}</a><input type="number" value="${selected.amount}"></li>
+				<li class="product"><a href="${url}">${product}</a><input type="text" value="${selected.amount}"></li>
 			`;
 		}).join('');
 		
