@@ -9,8 +9,6 @@ class ProductView {
 
 	render(products: {}, list: string) {
 
-		this.updateList(products, list);
-
 		this.view.innerHTML = `
         <div id="selectAmount" class="hidden">
         	<div class="container">
@@ -22,16 +20,22 @@ class ProductView {
         </div>
 		<input id="searchInput" value="" placeholder="search" type="text">
         <button id="addButton">+ Produkt</button>
+        
         <div id="productsList"></div>
+        
         <div class="container">
 			<a class="button grow" href="#/lists/${list}"> Fertig </a>
 		</div>
 		`;
+
+		this.updateList(products, list);
+
 	}
 
 	updateList(products: {}, list:string) {
 		var product;
-		var productsElement = document.getElementById('productsList')
+		var productsElement = document.getElementById('productsList');
+		console.log(productsElement );
 		var template = Object.keys(products).map((id) => {
 			product = products[id];
 			return `<li class="product">
