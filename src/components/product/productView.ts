@@ -17,6 +17,7 @@ class ProductView {
 		<input id="searchInput" value="" placeholder="search" type="text">
         <button id="addButton">Test</button>
         <div id="productsList"></div>
+		<a href="#/lists/${list}"> Fertig </a>
 		`;
 
 		this.updateList(products, list);
@@ -33,6 +34,7 @@ class ProductView {
 				</a>
 			</li>`
 		}).join('');
+
 		productsElement.innerHTML = template;
 	}
 
@@ -45,6 +47,8 @@ class ProductView {
 	}
 
 	updateLinkText(elem, params, event) {
+		event.target.value = event.target.value || 1;
+		
 		elem.href = `#/lists/${params.list}/addProductToList/${params.product}/${event.target.value}`;
 	}
 }

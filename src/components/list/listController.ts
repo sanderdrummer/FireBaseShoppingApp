@@ -24,7 +24,6 @@ class ListController {
 	}
 
 	show(params) {
-		console.log(params);
 		this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/lists/' + params.list);
 		this.fireBase.on("value", (snapshot) => {
 			if (snapshot.val()) {
@@ -37,16 +36,47 @@ class ListController {
 	}
 
 	updateList(res) {
-		console.log(res);
 		this.list = new List(res);
 	}
 
 	addProductToList(params) {
 		var product = this.productController.getProduct(params.product);
-		console.log('addProductToList', params, product);
-		this.list.toAdd[product.name] = product.name;
+		product.amount = params.amount;
+		product.rating += 1;
+		product.update();
+		this.list.toAdd[product.name] = product.getData();
 		this.list.update();
 		this.listView.render(this.list);
+		this.productController.updateView();
+	}
+
+	addProductToBasket(params) {
+		this.list.alreadyAdded[params.product] = this.list.toAdd[params.product]; 
+		this.list.toAdd[params.product] = {};
+		this.list.update();
+		this.listView.render(this.list);
+	}
+
+	revertProductFromBasket(params) {
+		this.list.toAdd[params.product] = this.list.alreadyAdded[params.product];
+		this.list.alreadyAdded[params.product] = {};
+		this.list.update();
+		this.listView.render(this.list);
+	}
+
+	reset(params) {
+		this.list.toAdd = {};
+		this.list.alreadyAdded = {};
+		this.list.update();
+		this.listView.render(this.list);
+
+	}
+
+	destroy(params) {
+		this.list.fireBase.remove();
+		window.location.hash = '#/';
+		delete this.list;
+		delete this;
 	}
 }
 

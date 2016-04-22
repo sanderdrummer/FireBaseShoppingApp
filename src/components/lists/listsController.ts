@@ -25,7 +25,6 @@ class ListsController {
 	getLists() {
 		if (this.fireBase) {
 			this.fireBase.on("value", (snapshot) => {
-				console.log(snapshot.val());
 				if (snapshot) {
 					this.updateLists(snapshot.val());
 				}

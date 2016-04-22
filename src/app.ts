@@ -28,10 +28,15 @@ router.register('/', (params) => {
 		console.log(params);
 		listController.show(params)
 	}).register('/lists/:list/destroy', (params) => {
-		console.log(params);
-		listController.show(params)
+		listController.destroy(params)
+	}).register('/lists/:list/reset', (params) => {
+		listController.reset(params)
 	}).register('/lists/:list/addProducts', (params) => {
 		productController.init(params);
+	}).register('/lists/:list/addProductToBasket/:product', (params) => {
+		listController.addProductToBasket(params);
+	}).register('/lists/:list/revertProductFromBasket/:product', (params) => {
+		listController.revertProductFromBasket(params);
 	}).register('/lists/:list/addProducts/:product', (params) => {
 		productController.selectProductAmount(params);
 	}).register('/lists/:list/addProductToList/:product/:amount', (params) => {

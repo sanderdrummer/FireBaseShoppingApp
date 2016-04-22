@@ -17,7 +17,6 @@ class ListsView {
 
 		listsTemplate = Object.keys(lists).map((name) => {
 			list = lists[name];
-			console.log('list', list);
 			return `<li class="list">
 				<a class="list-item" href="#/lists/${list.name}">${list.name}</a>
 			</li>`
