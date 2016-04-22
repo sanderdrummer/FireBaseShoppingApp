@@ -36,7 +36,6 @@ var ListController = (function () {
         this.list.update();
         this.listView.render(this.list);
         this.productController.updateView();
-        console.log(window.location.hash);
         window.location.hash = "#/lists/" + params.list + "/addProductToList";
     };
     ListController.prototype.addProductToBasket = function (params) {

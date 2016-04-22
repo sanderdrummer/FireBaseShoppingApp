@@ -18,9 +18,7 @@ var ProductViewController = (function () {
         this.searchInput = document.getElementById('searchInput');
         this.addButton.addEventListener('click', function () { return _this.addProduct(); });
         this.searchInput.addEventListener('keyup', function (event) { return _this.addOnEnter(event); });
-        this.searchInput.addEventListener('keyup', function () { return _this.filterProducts(); });
-        // this.fireBase.on('child_added',
-        // 	(childSnapshot, prevChildKey) => this.getProducts());
+        this.searchInput.addEventListener('keyup', function (event) { return _this.filterProducts(event); });
     };
     ProductViewController.prototype.getProducts = function () {
         var _this = this;
@@ -29,6 +27,7 @@ var ProductViewController = (function () {
                 _this.updateProducts(snapshot.val());
             }
             _this.updateView();
+            document.getElementById('searchInput').focus();
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
         });
@@ -50,13 +49,12 @@ var ProductViewController = (function () {
         this.productView.render(this.products, this.list);
         this.updateHandlers();
     };
-    ProductViewController.prototype.filterProducts = function () {
+    ProductViewController.prototype.filterProducts = function (event) {
         var _this = this;
         var name = this.searchInput.value;
         var product;
         this.filteredProducts = {};
         Object.keys(this.products).map(function (id) {
-            console.log(_this.products, id);
             product = _this.products[id];
             if (product.name.indexOf(name) > -1) {
                 _this.filteredProducts[id] = product;
@@ -78,7 +76,12 @@ var ProductViewController = (function () {
             product = new Product({ name: name });
             product.update();
         }
+        else {
+            product = this.filteredProducts[Object.keys(this.filteredProducts)[0]];
+        }
+        console.log('ADDD PRODUCT', this.filteredProducts, product, Object.keys(this.filteredProducts)[0]);
         this.searchInput.value = '';
+        window.location.hash += '/' + product.name;
     };
     ProductViewController.prototype.selectProductAmount = function (param) {
         this.productView.showAmount(param);

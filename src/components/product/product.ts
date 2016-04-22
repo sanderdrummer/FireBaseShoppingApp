@@ -15,14 +15,14 @@ class Product {
 	}
 
 	update() {
-		this.fireBase.set(this.getData);
+		this.fireBase.set(this.getData());
 	}
 
 	getData() {
 		return {
 			name: this.name,
-			amount: this.amount,
-			rating: this.rating
+			amount: this.amount || 1,
+			rating: this.rating || 0
 		}
 	}
 

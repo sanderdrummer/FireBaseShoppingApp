@@ -31,10 +31,7 @@ class ProductViewController {
 		this.searchInput.addEventListener('keyup', 
 			(event) => this.addOnEnter(event));
 		this.searchInput.addEventListener('keyup', 
-			() => this.filterProducts());
-
-		// this.fireBase.on('child_added',
-		// 	(childSnapshot, prevChildKey) => this.getProducts());
+			(event) => this.filterProducts(event));
 	}
 
 	getProducts() {
@@ -43,6 +40,7 @@ class ProductViewController {
 				this.updateProducts(snapshot.val());
 			}
 			this.updateView();
+			document.getElementById('searchInput').focus();
 		}, function(errorObject) {
 			console.log("The read failed: " + errorObject.code);
 		});
@@ -68,13 +66,12 @@ class ProductViewController {
 		this.updateHandlers();
 	}
 
-	filterProducts() {
+	filterProducts(event) {
 		var name = this.searchInput.value;
 		var product;
 		
 		this.filteredProducts = {};
 		Object.keys(this.products).map((id) => {
-			console.log(this.products, id);
 			product = this.products[id];
 			if (product.name.indexOf(name) > -1) {
 				this.filteredProducts[id] = product;
@@ -82,6 +79,7 @@ class ProductViewController {
 		});
 
 		this.productView.updateList(this.filteredProducts, this.list);
+
 	}
 
 	addOnEnter(event) {
@@ -100,10 +98,13 @@ class ProductViewController {
 		if (name && notInFilteredList) {
 			product = new Product({ name: name });
 			product.update();
-
-
+		} else {
+			product = this.filteredProducts[Object.keys(this.filteredProducts)[0]];
 		}
+		
+		console.log('ADDD PRODUCT', this.filteredProducts, product, Object.keys(this.filteredProducts)[0] );
 		this.searchInput.value = '';
+		window.location.hash += '/' + product.name;
 	}
 
 	selectProductAmount(param){

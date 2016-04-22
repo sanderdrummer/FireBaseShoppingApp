@@ -8,13 +8,13 @@ var Product = (function () {
         this.fireBase = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/products/' + config.name);
     }
     Product.prototype.update = function () {
-        this.fireBase.set(this.getData);
+        this.fireBase.set(this.getData());
     };
     Product.prototype.getData = function () {
         return {
             name: this.name,
-            amount: this.amount,
-            rating: this.rating
+            amount: this.amount || 1,
+            rating: this.rating || 0
         };
     };
     Product.prototype.remove = function () {
