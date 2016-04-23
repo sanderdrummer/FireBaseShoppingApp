@@ -79,12 +79,18 @@ var ProductViewController = (function () {
         else {
             product = this.filteredProducts[Object.keys(this.filteredProducts)[0]];
         }
-        console.log('ADDD PRODUCT', this.filteredProducts, product, Object.keys(this.filteredProducts)[0]);
         this.searchInput.value = '';
         window.location.hash += '/' + product.name;
     };
     ProductViewController.prototype.selectProductAmount = function (param) {
         this.productView.showAmount(param);
+    };
+    ProductViewController.prototype.destroy = function (params) {
+        var product = this.products[params.product];
+        if (product) {
+            product.destroy();
+            window.location.hash = '#/';
+        }
     };
     return ProductViewController;
 }());

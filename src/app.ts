@@ -41,5 +41,7 @@ router.register('/', (params) => {
 		productController.selectProductAmount(params);
 	}).register('/lists/:list/addProductToList/:product/:amount', (params) => {
 		listController.addProductToList(params);
+	}).register('/products/destroy/:product', (params) => {
+		productController.destroy(params);
 	})
 	;

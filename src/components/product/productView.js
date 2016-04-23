@@ -12,7 +12,7 @@ var ProductView = (function () {
         var productsElement = document.getElementById('productsList');
         var template = Object.keys(products).map(function (id) {
             product = products[id];
-            return "<li class=\"product\">\n\t\t\t\t<a href=\"#/lists/" + list + "/addProducts/" + product.name + "\">\n\t\t\t\t\t" + product.name + "\n\t\t\t\t</a>\n\t\t\t</li>";
+            return "<li class=\"product container\">\n\t\t\t\t<a class=\"buttonSmall grow\" href=\"#/lists/" + list + "/addProducts/" + product.name + "\">\n\t\t\t\t\t" + product.name + "\n\t\t\t\t</a>\n\t\t\t\t<a class=\"buttonSmall\" href=\"#/products/destroy/" + product.name + "\">l\u00F6schen</a>\n\t\t\t</li>";
         }).join('');
         productsElement.innerHTML = template;
     };

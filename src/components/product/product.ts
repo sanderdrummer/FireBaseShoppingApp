@@ -26,7 +26,7 @@ class Product {
 		}
 	}
 
-	remove() {
+	destroy() {
 		this.fireBase.remove();
 	}
 

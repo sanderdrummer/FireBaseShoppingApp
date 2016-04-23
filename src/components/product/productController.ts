@@ -102,13 +102,20 @@ class ProductViewController {
 			product = this.filteredProducts[Object.keys(this.filteredProducts)[0]];
 		}
 		
-		console.log('ADDD PRODUCT', this.filteredProducts, product, Object.keys(this.filteredProducts)[0] );
 		this.searchInput.value = '';
 		window.location.hash += '/' + product.name;
 	}
 
 	selectProductAmount(param){
 		this.productView.showAmount(param);
+	}
+
+	destroy(params) {
+		var product = this.products[params.product];
+		if (product) {
+			product.destroy();
+			window.location.hash = '#/';
+		}
 	}
 }
 

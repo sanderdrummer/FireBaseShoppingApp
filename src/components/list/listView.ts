@@ -53,7 +53,7 @@ class ListView {
 			url = type === 'toAdd' ? `#/lists/${list.name}/addProductToBasket/${product}` : `#/lists/${list.name}/revertProductFromBasket/${product}`;
 
 			return `
-				<li class="product"><a href="${url}">${product}</a><input type="text" value="${selected.amount}"></li>
+				<li class="product container"><a class="buttonSmall grow" href="${url}">${product} - <input type="text" value="${selected.amount}"/></a></li>
 			`;
 		}).join('');
 		

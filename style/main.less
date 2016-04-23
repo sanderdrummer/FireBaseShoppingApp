@@ -6,7 +6,10 @@
 @import 'forms.less';
 @import 'components.less';
 
-.product,
+li{
+  list-style-type: none;
+}
+
 .list{
   list-style-type: none;
   text-align:center;
@@ -19,6 +22,25 @@ a.button{
   padding: @leading;
   text-align: center;
   margin-bottom: @leading;
+}
+
+a.buttonSmall{
+  border: solid 1px @highlight;
+  border-bottom:none;
+  padding: @leading /2;
+  text-align: center;
+  &:first-child{
+    border-bottom: solid 1px @highlight;
+  }
+  &:nth-child(2){
+    border-top: none;
+  }
+  &:last-child{
+    border-bottom: solid 1px @highlight;
+  }
+  input{
+    margin-top: 0px;
+  }
 }
 
 #products {

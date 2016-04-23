@@ -40,10 +40,11 @@ class ProductView {
 		var productsElement = document.getElementById('productsList');
 		var template = Object.keys(products).map((id) => {
 			product = products[id];
-			return `<li class="product">
-				<a href="#/lists/${list}/addProducts/${product.name}">
+			return `<li class="product container">
+				<a class="buttonSmall grow" href="#/lists/${list}/addProducts/${product.name}">
 					${product.name}
 				</a>
+				<a class="buttonSmall" href="#/products/destroy/${product.name}">löschen</a>
 			</li>`
 		}).join('');
 

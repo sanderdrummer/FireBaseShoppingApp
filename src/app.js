@@ -34,4 +34,6 @@ router.register('/', function (params) {
     productController.selectProductAmount(params);
 }).register('/lists/:list/addProductToList/:product/:amount', function (params) {
     listController.addProductToList(params);
+}).register('/products/destroy/:product', function (params) {
+    productController.destroy(params);
 });

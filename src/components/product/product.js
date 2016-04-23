@@ -17,7 +17,7 @@ var Product = (function () {
             rating: this.rating || 0
         };
     };
-    Product.prototype.remove = function () {
+    Product.prototype.destroy = function () {
         this.fireBase.remove();
     };
     return Product;

@@ -19,7 +19,7 @@ var ListView = (function () {
             var selected = list[type][product];
             console.log(selected);
             url = type === 'toAdd' ? "#/lists/" + list.name + "/addProductToBasket/" + product : "#/lists/" + list.name + "/revertProductFromBasket/" + product;
-            return "\n\t\t\t\t<li class=\"product\"><a href=\"" + url + "\">" + product + "</a><input type=\"text\" value=\"" + selected.amount + "\"></li>\n\t\t\t";
+            return "\n\t\t\t\t<li class=\"product container\"><a class=\"buttonSmall grow\" href=\"" + url + "\">" + product + " - <input type=\"text\" value=\"" + selected.amount + "\"/></a></li>\n\t\t\t";
         }).join('');
         listElement.innerHTML = template;
     };
