@@ -1,3 +1,11 @@
 angular.module('Fireshopping', [
     'CompiledTemplates',
-    'firebase']);
+    'firebase'])
+.config([
+    '$compileProvider',
+    '$httpProvider',
+    function($compileProvider, $httpProvider) {
+        $compileProvider.debugInfoEnabled(false);
+        $httpProvider.useApplyAsync(true);
+    }
+]);

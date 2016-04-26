@@ -20,10 +20,10 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('main.css'),
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: {
-                except: ['exports', 'require']
-            }
-        })
+        // new webpack.optimize.UglifyJsPlugin({
+        //     mangle: {
+        //         except: ['exports', 'require']
+        //     }
+        // })
     ]
 };
