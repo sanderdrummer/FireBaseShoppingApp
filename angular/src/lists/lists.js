@@ -1,10 +1,19 @@
 angular.module('Fireshopping')
 .directive('lists',
-    [function() {
+    ['$firebaseArray', function($firebaseArray) {
 
     'use strict';
-    var link = function(scope, elem) {
-        console.log( 'this' );
+    var link = function($scope) {
+        var fireBaseConnection = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/listNames');
+
+        $scope.lists = $firebaseArray(fireBaseConnection);
+
+        $scope.addList = function(){
+            $scope.lists.$add({
+                name: $scope.newName
+            });
+        };
+
     };
 
     return {
