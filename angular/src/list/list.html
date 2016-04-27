@@ -1,12 +1,16 @@
+<h1>Liste {{listData.name}}</h1>
+{{listData}}
 <button>Produkte zur Liste</button>
 <h2>noch in den korb</h2>
 <ul>
-    <li ng-repeat="list in lists">
+    <li ng-repeat="product in list.toAdd">
         {{::list.name}}
     </li>
 </ul><h2>schon dabei</h2>
 <ul>
-    <li ng-repeat="list in lists">
+    <li ng-repeat="product in list.alreadyAdded">
         {{::list.name}}
     </li>
 </ul>
+<products list-data="listData" ></products>
+

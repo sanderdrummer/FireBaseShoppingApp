@@ -4,10 +4,24 @@ angular.module('Fireshopping')
 
     'use strict';
     var link = function($scope) {
-            $scope.$watch('listData', function(val){
-                console.log( val );
-            });
 
+        $scope.showListDetails = false;
+
+        $scope.addToBasket = function() {
+
+        };
+        $scope.removeFromBasket = function() {
+
+        };
+        $scope.removeFromList = function() {
+
+        };
+        $scope.clear = function() {
+
+        };
+        $scope.delete = function() {
+
+        };
     };
 
     return {

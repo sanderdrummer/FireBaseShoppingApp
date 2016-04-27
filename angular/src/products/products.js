@@ -6,11 +6,11 @@ angular.module('Fireshopping')
     var link = function($scope) {
         var fireBaseConnection = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/products');
 
+        $scope.selectedProduct = {};
         $scope.products = $firebaseArray(fireBaseConnection);
-
+        $scope.showAmount = false;
 
         $scope.filterProducts = function(inputVal){
-            console.log( inputVal );
             if (inputVal) {
                 $scope.filteredProducts = $scope.products.filter(function(val){
                     console.log( val );
@@ -22,13 +22,22 @@ angular.module('Fireshopping')
             }
         };
 
-        $scope.addList = function(){
-            console.log( !$scope.filteredProducts.length );
+        $scope.addList = function() {
             if (!$scope.filteredProducts.length) {
                 $scope.products.$add({
-                    name: $scope.newProduct
-                });
+                    name: $scope.newProductName
+                }).then(function(ref){
+                    var index = $scope.products.$indexFor(ref.key());
+                    $scope.selectedProduct = $scope.products[index];                });
+            } else {
+                $scope.selectedProduct = $scope.filteredProducts[0];
             }
+            $scope.showAmount = true;
+            $scope.newProductName = null;
+        };
+
+        $scope.addProductToList = function() {
+
         };
 
         $scope.filterProducts();
@@ -37,6 +46,9 @@ angular.module('Fireshopping')
 
     return {
         link: link,
+        scope: {
+            'listData': '='
+        },
         templateUrl: 'products/products.html'
     };
 }]);
