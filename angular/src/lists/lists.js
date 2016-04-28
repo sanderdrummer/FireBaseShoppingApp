@@ -10,7 +10,9 @@ angular.module('Fireshopping')
 
         $scope.addList = function(){
             $scope.lists.$add({
-                name: $scope.newName
+                name: $scope.newName,
+                toAdd: [],
+                alreadyAdded: []
             });
         };
 

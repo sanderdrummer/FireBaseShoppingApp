@@ -11,14 +11,12 @@
         <link rel="stylesheet" href="dist/main.css">
     </head>
     <body class="p" ng-app="Fireshopping"
-        router
-        list-data="listData">
+        router>
 
-        <nav class="container" ng-click="listData = false"><a href="#/" class="grow button">Home</a></nav>
         <lists></lists>
 
-        <list ng-if="listData" list-data="listData"></list>
-        {{listData}}
+        <list></list>
+
         <script src="lib/advocatRouter.js"></script>
         <script src="lib/angular.min.js"></script>
         <script src="lib/firebase.js"></script>

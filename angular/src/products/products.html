@@ -1,11 +1,14 @@
 <h1>Listen wuhuhu</h1>
-{{selectedProduct}}
-<form ng-if="showAmount" name="addProductToList" ng-submit="addList()">
-    <input required type="number" ng-model="selectedProductAmount" placeholder="Anzahl hinzufügen" type="text"/><button type="submit"> HINZUFÜGEN</button>
+<form ng-if="showAmount" name="addProductToListForm" ng-submit="addProductToList(selectedProduct, selectedProductAmount)">
+    <div ng-if="selectedProductAmount">
+        {{selectedProduct.name}} - {{selectedProductAmount}} mal zur Liste
+    </div>
+    <input required id="productAmount" type="number" ng-model="selectedProductAmount" placeholder="Anzahl hinzufügen" type="text"/><button type="submit"> HINZUFÜGEN</button>
 </form>
-<form name="addProduct" ng-submit="addList()">
+<form name="addProduct" ng-submit="addProduct()">
     <input
         required
+        id="productName"
         ng-model="newProductName"
         ng-change="filterProducts(newProductName)"
         placeholder="Produkt hinzufügen"
@@ -14,7 +17,7 @@
 </form>
 
 <ul>
-    <li ng-repeat="product in filteredProducts track by product.$id ">
+    <li ng-click="selectProduct(product)" ng-repeat="product in filteredProducts track by product.$id ">
         {{product.name}}
     </li>
 </ul>
