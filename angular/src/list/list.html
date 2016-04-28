@@ -1,4 +1,4 @@
-<h1>Liste {{list.$id}}</h1>
+<h1> {{list.$id}}</h1>
 <button ng-click="toggleProducts()">Produkte zur Liste</button>
 <h2 class="b-b">noch in den korb</h2>
 <ul>
@@ -16,10 +16,15 @@
         </div>
     </li>
 </ul>
-<a href="" class="m-t-5 grow" ng-click="clearItems()">Liste Leeren</a>
+<div class="flex m-b-1">
+    <a href="" class="p b grow" ng-click="clearItems()">Liste Leeren</a>
+</div>
+<div class="flex m-b-1">
+    <a href="" class="p b grow" ng-click="destroyList()">Liste löschen</a>
+</div>
 <div class="products" ng-if="showProducts">
-    <products></products>
-    <div class="flex m-t-2">
+    <div class="flex m-b-1">
         <a href="" class="p b grow" ng-click="toggleProducts()">Fertig</a>
     </div>
+    <products></products>
 </div>

@@ -14,6 +14,7 @@ angular.module('Fireshopping')
                 toAdd: [],
                 alreadyAdded: []
             });
+            $scope.newName = '';
         };
 
         function newListResolved(ref) {

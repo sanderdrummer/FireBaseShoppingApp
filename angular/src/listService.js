@@ -1,13 +1,15 @@
 angular.module('Fireshopping')
-.factory('listService', ['$firebaseObject', function($firebaseObject){
+.factory('listService', ['$firebaseObject', '$firebaseArray', function($firebaseObject, $firebaseArray){
     'use strict';
 
     var listService = {};
     var listWatcher = [];
-
+    var index;
     listService.list = {};
 
     listService.setList = function(params){
+        index = params.index;
+
         if (params.list) {
             var fireBaseConnection = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/list/' + params.list);
             listService.list = $firebaseObject(fireBaseConnection);
@@ -57,6 +59,11 @@ angular.module('Fireshopping')
         listService.list.toAdd = [];
         listService.list.alreadyAdded = [];
         listService.list.$save();
+    };
+    listService.destroyList = function() {
+        listService.list.$remove().then(function(ref) {
+            window.location.hash = '#/';
+        });
     };
 
     function update(){

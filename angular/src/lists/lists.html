@@ -9,6 +9,7 @@
 
 <ul>
     <li class="flex" ng-repeat="list in lists">
-        <a class="b-b p grow" ng-href="#/list/{{::list.name}}">{{::list.name}}</a>
+        <a class="b-b p grow" ng-href="#/list/{{::list.name}}/{{::list.$id}}">{{::list.name}}</a>
+        <a class="b-b p"  ng-click="lists.$remove(list)" href="">löschen</a>
     </li>
 </ul>

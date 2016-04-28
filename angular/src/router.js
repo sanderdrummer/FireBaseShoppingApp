@@ -11,7 +11,7 @@ angular.module('Fireshopping')
             $scope.hasList = false;
             $scope.$applyAsync();
         });
-        router.register('/list/:list', function(params){
+        router.register('/list/:list/:index', function(params){
             listService.setList(params);
             $scope.hasList = true;
         });

@@ -25,8 +25,8 @@ angular.module('Fireshopping')
             listService.clearItems();
 
         };
-        $scope.delete = function() {
-
+        $scope.destroyList = function() {
+            listService.destroyList();
         };
         $scope.toggleProducts = function() {
             $scope.showProducts = !$scope.showProducts;
