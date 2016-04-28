@@ -10,11 +10,11 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="dist/main.css">
     </head>
-    <body class="p" ng-app="Fireshopping"
-        router>
+    <body class="p" ng-app="Fireshopping" router>
+        <a class="grow p" ng-click="resetListSelection()" href="#/">Home</a>
         <div class="flex">
-            <lists class="p"></lists>
-            <list class="p grow"></list>
+            <lists ng-hide="hasList" class="p grow"></lists>
+            <list ng-show="hasList" class="p grow"></list>
         </div>
 
 

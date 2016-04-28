@@ -901,7 +901,7 @@ a.buttonSmall input {
   overflow-y: scroll;
   max-height: 100%;
   position: fixed;
-  width: 100%;
+  width: 95%;
   background-color: white;
   top: 0;
 }

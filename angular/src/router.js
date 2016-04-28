@@ -7,10 +7,13 @@ angular.module('Fireshopping')
         var router = new Router();
 
         router.register('/', function(params){
-            listService.clear(params);
+            listService.clear();
+            $scope.hasList = false;
+            $scope.$applyAsync();
         });
         router.register('/list/:list', function(params){
             listService.setList(params);
+            $scope.hasList = true;
         });
 
         router.handleHashChange();

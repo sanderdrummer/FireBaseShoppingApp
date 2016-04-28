@@ -1,25 +1,25 @@
-<div ng-if="list">
-    <h1>Liste {{list.$id}}</h1>
-    <button ng-click="toggleProducts()">Produkte zur Liste</button>
-    <h2 class="b-b">noch in den korb</h2>
-    <ul>
-        <li ng-repeat="item in list.toAdd">
-            <div class="p-s pointer" ng-click="addToBasket(item, $index)">
-                {{item.product.name}} {{item.amount}}
-            </div>
-        </li>
-    </ul>
-    <h2 class="b-b">schon dabei</h2>
-    <ul>
-        <li ng-repeat="item in list.alreadyAdded">
-            <div class="p-s pointer" ng-click="removeFromBasket(item, $index)">
-                {{item.product.name}} {{item.amount}}
-            </div>
-        </li>
-    </ul>
-    <a href="" class="m-t-5 grow" ng-click="clearItems()">Liste Leeren</a>
-    <div class="products" ng-if="showProducts">
-        <products></products>
-        <a href="" ng-click="toggleProducts()">Fertig</a>
+<h1>Liste {{list.$id}}</h1>
+<button ng-click="toggleProducts()">Produkte zur Liste</button>
+<h2 class="b-b">noch in den korb</h2>
+<ul>
+    <li ng-repeat="item in list.toAdd">
+        <div class="p-s pointer" ng-click="addToBasket(item, $index)">
+            {{item.product.name}} {{item.amount}}
+        </div>
+    </li>
+</ul>
+<h2 class="b-b">schon dabei</h2>
+<ul>
+    <li ng-repeat="item in list.alreadyAdded">
+        <div class="p-s pointer" ng-click="removeFromBasket(item, $index)">
+            {{item.product.name}} {{item.amount}}
+        </div>
+    </li>
+</ul>
+<a href="" class="m-t-5 grow" ng-click="clearItems()">Liste Leeren</a>
+<div class="products" ng-if="showProducts">
+    <products></products>
+    <div class="flex m-t-2">
+        <a href="" class="p b grow" ng-click="toggleProducts()">Fertig</a>
     </div>
 </div>
