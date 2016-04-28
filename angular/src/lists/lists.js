@@ -1,6 +1,6 @@
 angular.module('Fireshopping')
 .directive('lists',
-    ['$firebaseArray', function($firebaseArray) {
+    ['$firebaseArray', 'listService', function($firebaseArray, listService) {
 
     'use strict';
     var link = function($scope) {
@@ -16,6 +16,9 @@ angular.module('Fireshopping')
             });
         };
 
+        function newListResolved(ref) {
+            $scope.showAddList = false;
+        }
     };
 
     return {

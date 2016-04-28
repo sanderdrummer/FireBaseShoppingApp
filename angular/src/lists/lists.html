@@ -1,11 +1,14 @@
-<h1>Listen wuhuhu</h1>
-
-<form name="addList" ng-submit="addList()">
-    <input required ng-model="newName" placeholder="liste hinzufügen" type="text"/><button type="submit"> HINZUFÜGEN</button>
+<form class="flex" name="addList" ng-submit="addList()">
+    <input required
+    class="grow"
+    ng-model="newName"
+    placeholder="liste hinzufügen"
+    type="text"/>
+    <button type="submit"> HINZUFÜGEN</button>
 </form>
 
 <ul>
-    <li ng-repeat="list in lists">
-        <a ng-href="#/list/{{::list.name}}">{{::list.name}}</a>
+    <li class="flex" ng-repeat="list in lists">
+        <a class="b-b p grow" ng-href="#/list/{{::list.name}}">{{::list.name}}</a>
     </li>
 </ul>

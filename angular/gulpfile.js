@@ -8,16 +8,16 @@ var es = require('event-stream');
 
 
 // compile and concat less
-// gulp.task('aboutLESS', function() {
-//     gulp.src('./common/Less/UeberUns.less')
-//     .pipe(less({
-//         sourceMap: {
-//             sourceMapRoothpath: './common/Less/'
-//         }
-//     }))
+gulp.task('less', function() {
+    gulp.src('./less/main.less')
+    .pipe(less({
+        sourceMap: {
+            sourceMapRoothpath: './less/'
+        }
+    }))
 
-//     .pipe(gulp.dest('./common/stylesheets/'));
-// });
+    .pipe(gulp.dest('./dist'));
+});
 
 gulp.task('js', function() {
     es.merge(
@@ -47,4 +47,5 @@ function getTemplateStream() {
 gulp.task('default', function() {
     gulp.watch('./src/**/*.js', ['js']);
     gulp.watch('./src/**/*.html', ['js']);
+    gulp.watch('./less/**/*.less', ['less']);
 });

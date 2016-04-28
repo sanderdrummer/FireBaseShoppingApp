@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    &.down{
+        flex-direction: column
+    }
+    .item{
+        padding: @leading/2;
+        position: relative;
+    }
+}
+
+.item-container{
+    margin-left: -@leading/2;
+    margin-right: -@leading/2;
+}
+
+.center{
+    justify-content: center;
+}
+.centerBoth{
+    justify-content: center;
+    align-items: center;
+}
+.grow{
+    flex-grow: 1;
+}
+
+.width {
+    width: @width;
+    margin: 0 auto;
+}
+
+.newCol(@number){
+  .item-@{number}{
+    flex-grow: 1;
+    flex: 0 1 percentage(@number/@colCount);
+  }
+}
+.newOffset(@number){
+  .off-@{number}{
+    margin-left: percentage(@number/@colCount);
+  }
+}
+
+.colLoop (@index) when (@index > 0) {
+
+  .newCol(@index);
+  .newOffset(@index);
+  .colLoop(@index - 1);
+}
+.colLoop(@colCount);
