@@ -17,7 +17,7 @@
 </form>
 
 <ul>
-    <li  class="pointer p-s b-b" ng-click="selectProduct(product)" ng-repeat="product in filteredProducts track by product.$id ">
+    <li  class="pointer p-s b-b" ng-click="selectProduct(product)" ng-repeat="product in filteredProducts | limitTo:5track by product.$id ">
         {{product.name}}
     </li>
 </ul>
