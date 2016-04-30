@@ -24,8 +24,7 @@ angular.module('Fireshopping')
         };
 
         $scope.selectProduct = function(product) {
-            $scope.selectedProduct = product;
-            afterProductSelection();
+            $scope.addProductToList(product, 1);
         };
 
         $scope.addProduct = function() {
