@@ -1,5 +1,5 @@
 <form class="flex" ng-if="showAmount" name="addProductToListForm" ng-submit="addProductToList(selectedProduct, selectedProductAmount)">
-    <div class="m-t-2" ng-if="selectedProductAmount">
+    <div ng-if="selectedProductAmount">
         {{selectedProduct.name}} - {{selectedProductAmount}} mal zur Liste
     </div>
     <input class="grow" required id="productAmount" type="text" ng-model="selectedProductAmount" placeholder="Anzahl hinzufügen" type="text"/><button type="submit"> HINZUFÜGEN</button>
