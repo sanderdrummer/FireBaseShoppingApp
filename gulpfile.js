@@ -5,28 +5,45 @@ var concat = require('gulp-concat');
 var less = require('gulp-less-sourcemap');
 var sourcemaps = require('gulp-sourcemaps');
 var es = require('event-stream');
-
+var uglify = require('gulp-uglify');
+var cleanCSS = require('gulp-clean-css');
 
 // compile and concat less
 gulp.task('less', function() {
     gulp.src('./less/main.less')
-    .pipe(less({
-        sourceMap: {
-            sourceMapRoothpath: './less/'
-        }
-    }))
+        .pipe(less({
+            sourceMap: {
+                sourceMapRoothpath: './less/'
+            }
+        }))
+        .pipe(cleanCSS())
+        .pipe(gulp.dest('./dist'));
+});
 
-    .pipe(gulp.dest('./dist'));
+gulp.task('lib', function(){
+    gulp.src([
+        './lib/advocatRouter.js',
+        './lib/angular.min.js',
+        './lib/firebase.js',
+        './lib/angularfire.min.js',
+        './lib/modules.js'
+    ])
+        .pipe(sourcemaps.init())
+        .pipe(concat('lib.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('js', function() {
     es.merge(
         getTemplateStream(),
         gulp.src('./src/**/*.js'))
-    .pipe(sourcemaps.init())
-    .pipe(concat('bundle.js'))
-    .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dist'));
+        .pipe(sourcemaps.init())
+        .pipe(concat('bundle.js'))
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('./dist'));
 });
 
 function getTemplateStream() {
@@ -40,7 +57,8 @@ function getTemplateStream() {
             quotes: true
         }))
         .pipe(ngHtml2Js({
-            moduleName: 'CompiledTemplates'
+            moduleName: 'CompiledTemplates',
+            declareModule: false
         }));
 }
 

@@ -4,15 +4,17 @@
   "author": "TobiasPickel",
   "dependencies": {},
   "devDependencies": {
+    "event-stream": "^3.3.2",
     "gulp": "*",
+    "gulp-clean-css": "^2.0.10",
     "gulp-concat": "*",
     "gulp-less": "*",
     "gulp-less-sourcemap": "^1.4.3",
     "gulp-minify-css": "*",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-ng-html2js": "^0.2.2",
     "gulp-order": "*",
     "gulp-sourcemaps": "^1.6.0",
-    "event-stream": "^3.3.2",
-    "gulp-minify-html": "^1.0.6",
-    "gulp-ng-html2js": "^0.2.2"
+    "gulp-uglify": "^1.5.3"
   }
 }
