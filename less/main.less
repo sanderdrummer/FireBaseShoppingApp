@@ -1,12 +1,29 @@
 @import 'reset.less';
-@import 'flex/vars.less';
-@import 'flex/typo.less';
-@import 'flex/grid.less';
-@import 'flex/marginClasses.less';
-@import 'flex/borderClasses.less';
-@import 'forms.less';
-@import 'components.less';
+@import 'vars.less';
+//@import 'components/themes/dark.less';
+// @import 'components/animations/animate.less';
+@import 'components/forms/forms.less';
+@import 'components/triangle.less';
+@import 'components/grid/grid.less';
+@import 'components/grid/layout.less';
+@import 'components/grid/marginClasses.less';
+@import 'components/grid/positioning.less';
+@import 'components/grid/images.less';
+@import 'components/structural/box.less';
+@import 'components/structural/cards.less';
+@import 'components/structural/gallery.less';
+@import 'components/structural/navs/navs.less';
+@import 'components/structural/navs/fatNav.less';
+@import 'components/structural/navs/inLineNav.less';
+@import 'components/structural/navs/stackedNav.less';
+@import 'components/structural/navs/fixedBottomNav.less';
+@import 'components/typo/typo.less';
+//@import 'components/themes/spa.less';
+//@import 'components/themes/band.less';
 
+body{
+  background-color: @mainBG;
+}
 li{
   list-style-type: none;
 }
@@ -15,14 +32,33 @@ li{
   max-height: 100%;
   position: fixed;
   width: 100%;
-  background-color: white;
+  background-color: @white;
   top: 0;
+  left: 0;
+  padding: @leading;
+  z-index: 2000;
+
+}
+.home {
+  position: fixed;
+  width: 100%;
+  top:0;
+  left:0;
+  padding:@leading;
+  background-color: @light;
+  color: @dark;
+  box-shadow: 3px 3px 6px @dark;
+  text-align: center;
+  z-index: 1000;
+}
+.content {
+  margin-top: 3* @leading;
 }
 
 .hidden{
   display: none;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }

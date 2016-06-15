@@ -1,0 +1,10 @@
+.cards-item{
+  padding: @leading;
+  background-color: white;
+  @media only screen and (min-width: @tablet) {
+    flex: 0 1 50%;
+  }
+  @media only screen and (min-width: @laptop) {
+  	flex: 0 1 percentage(100 / 300);
+  }
+}

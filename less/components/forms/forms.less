@@ -4,20 +4,19 @@ input[type="password"],
 input[type="date"],
 input[type="time"],
 input[type="submit"],
-input[type="number"],
 select,
 button,
 label,
 textarea{
     padding: @leading/2;
-    margin-top: @leading;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     border: solid 1px  @light;
-    &:active,
+    background-color: @formBG;
+  &:active,
     &:focus{
-        background-image: none;
+        background-image: none; 
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
@@ -28,16 +27,26 @@ textarea{
         border: 0;
         padding: 0;
     }
-}
+  @media only screen and (min-width: 1px) {
+    & {
+      margin-top: @leading;
+    }
+  }
 
-.item{
+  @media only screen and (min-width: @laptop) {
+    & {
+      margin-top: 0;
+    }
+  }
+}
+    
+.formGroup {
     input[type="text"],
     input[type="email"],
     input[type="password"],
     select,input[type="date"],
     input[type="time"],
     input[type="submit"],
-    input[type="number"],
     button,
     textarea{
         width: 100%;
@@ -55,6 +64,7 @@ label{
     }
 }
 
+a.button,
 button{
     -webkit-appearance: none;
     -webkit-border-radius: @borderRadius;
@@ -66,7 +76,7 @@ button{
     -moz-background-clip: padding;
     background-clip: padding-box;
     cursor: pointer;
-    color: white;
+    color: @fontMainColor;
     display: inline-block;
     font-family:@font;
     font-weight: @weight;
@@ -100,7 +110,7 @@ button{
     input{
         z-index: 3;
         position: relative;
-        background-color: white;
+        background-color: @formBG;
         &:focus + label {
             opacity: 1;
             bottom: 50%;
