@@ -10,18 +10,14 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="dist/main.css">
     </head>
-    <body ng-strict-di ng-app="Fireshopping" router>
-        <a class="m-t-2 grow p" ng-click="resetListSelection()" href="#/">Home</a>
-        <div class="flex">
+    <body class="p-1" ng-strict-di ng-app="Fireshopping" router>
+        <a class="home grow" ng-click="resetListSelection()" href="#/">Home</a>
+        <div class="content flex">
             <lists ng-hide="hasList" class="p grow"></lists>
             <list ng-show="hasList" class="grow"></list>
         </div>
 
-
-        <script src="lib/advocatRouter.js"></script>
-        <script src="lib/angular.min.js"></script>
-        <script src="lib/firebase.js"></script>
-        <script src="lib/angularfire.min.js"></script>
+        <script src="dist/lib.js"></script>
         <script src="dist/bundle.js"></script>
     </body>
 </html>
