@@ -1,15 +1,14 @@
 angular.module('Fireshopping')
 .directive('list',
-    ['listService', function(listService) {
+    ['$stateParams', '$rootScope', 'listService', function($stateParams, $rootScope, listService) {
 
     'use strict';
     var link = function($scope) {
 
-        listService.register(function(newList){
-            $scope.list = newList;
-        });
 
         $scope.showListDetails = false;
+
+        $scope.list = listService.getList($stateParams.list);
 
         $scope.addToBasket = function(item, index) {
             listService.addToBasket(item, index);
@@ -29,7 +28,10 @@ angular.module('Fireshopping')
             listService.destroyList();
         };
         $scope.toggleProducts = function() {
-            $scope.showProducts = !$scope.showProducts;
+            window.location.hash = '#/list/' + $stateParams.list + '/products';
+        };
+        $scope.home = function() {
+            window.location.hash = '#/home';
         };
     };
 

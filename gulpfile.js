@@ -17,13 +17,13 @@ gulp.task('less', function() {
             }
         }))
         .pipe(cleanCSS())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('../www/css'));
 });
 
 gulp.task('lib', function(){
     gulp.src([
-        './lib/advocatRouter.js',
-        './lib/angular.min.js',
+        // './lib/advocatRouter.js',
+        // './lib/angular.min.js',
         './lib/firebase.js',
         './lib/angularfire.min.js',
         './lib/modules.js'
@@ -32,7 +32,7 @@ gulp.task('lib', function(){
         .pipe(concat('lib.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('../www/dist'));
 });
 
 gulp.task('js', function() {
@@ -43,7 +43,7 @@ gulp.task('js', function() {
         .pipe(concat('bundle.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('../www/dist'));
 });
 
 function getTemplateStream() {

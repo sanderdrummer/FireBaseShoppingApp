@@ -1,25 +1,27 @@
 angular.module('Fireshopping')
-.factory('listService', ['$firebaseObject', '$firebaseArray', function($firebaseObject, $firebaseArray){
+.factory('listService', ['$firebaseObject', '$firebaseArray', '$stateParams', function($firebaseObject, $firebaseArray, $stateParams){
     'use strict';
 
     var listService = {};
     var listWatcher = [];
     var index;
     listService.list = {};
+    
+    listService.setList = function(list){
+        listService.list = list;
+    };
 
-    listService.setList = function(params){
-        index = params.index;
-
-        if (params.list) {
-            var fireBaseConnection = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/list/' + params.list);
+    listService.getList = function(list){
+        if (list) {
+            var fireBaseConnection = new Firebase('https://sizzling-torch-925.firebaseio.com/shopping/list/' + list);
             listService.list = $firebaseObject(fireBaseConnection);
-            update();
+            return listService.list;
         }
+
     };
 
     listService.clear = function() {
-        this.list = {};
-        update();
+        listService.list = {};
     };
 
     listService.register = function(cb) {
@@ -65,12 +67,6 @@ angular.module('Fireshopping')
             window.location.hash = '#/';
         });
     };
-
-    function update(){
-        listWatcher.forEach(function(cb){
-            cb(listService.list);
-        });
-    }
 
     return listService;
 }]);

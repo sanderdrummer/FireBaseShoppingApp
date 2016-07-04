@@ -1,7 +1,7 @@
 angular.module('Fireshopping')
 .directive('products',
-    ['$firebaseArray', 'listService', 'domService',
-    function($firebaseArray, listService, domService) {
+    ['$firebaseArray','$stateParams', 'listService', 'domService',
+    function($firebaseArray, $stateParams, listService, domService) {
 
     'use strict';
     var link = function($scope, elem) {
@@ -68,6 +68,11 @@ angular.module('Fireshopping')
         };
 
         $scope.filterProducts();
+
+        $scope.back = function(){
+            window.location.hash = '#/list/' + $stateParams.list ;
+
+        }
 
     };
 

@@ -1,6 +1,9 @@
 angular.module('Fireshopping', [
     'CompiledTemplates',
-    'firebase'])
+    'firebase',
+    'ionic',
+    'ui.router'
+])
 .config([
     '$compileProvider',
     '$httpProvider',
