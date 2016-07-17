@@ -1,26 +1,17 @@
 angular.module('Fireshopping')
-.directive('router',
-    ['listService', function(listService) {
-
-    'use strict';
-    var link = function($scope) {
-        var router = new Router();
-
-        router.register('/', function(params){
-            listService.clear();
-            $scope.hasList = false;
-            $scope.$applyAsync();
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+        .state('lists', {
+            url: '/home',
+            template: '<lists></lists>'
+        })
+        .state('list', {
+            url: '/list/:list',
+            template: '<list></list>'
+        })
+        .state('produces', {
+            url: '/list/:list/products',
+            template: '<products></products>'
         });
-        router.register('/list/:list/:index', function(params){
-            listService.setList(params);
-            $scope.hasList = true;
-        });
-
-        router.handleHashChange();
-    };
-
-    return {
-        link: link,
-        scope: true,
-    };
+        $urlRouterProvider.otherwise('/home');
 }]);

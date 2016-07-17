@@ -1,15 +1,28 @@
-<form class="flex" name="addList" ng-submit="addList()">
-    <input required
-    class="grow"
-    ng-model="newName"
-    placeholder="liste hinzufügen"
-    type="text"/>
-    <button type="submit"> HINZUFÜGEN</button>
-</form>
 
-<ul>
-    <li class="flex" ng-repeat="list in lists">
-        <a class="b-b p grow" ng-href="#/list/{{::list.name}}/{{::list.$id}}">{{::list.name}}</a>
-        <a class="b-b p"  ng-click="lists.$remove(list)" href="">löschen</a>
-    </li>
-</ul>
+<div class="item item-input-inset">
+    <label class="item-input-wrapper">
+        <input required type="text" ng-model="listsController.newName"
+               placeholder="Liste hinzufügen">
+    </label>
+    <button ng-click="listsController.addList()" class="button button-small">
+        HINZUFÜGEN
+    </button>
+</div>
+<ion-content>
+    <ion-list can-swipe="true">
+        <ion-item >
+            ...
+        </ion-item>
+        <ion-item ng-if="listsController.loading">
+            Listen werden geladen ...
+        </ion-item>
+        <ion-item ng-repeat="list in listsController.lists" class="item-button-right">
+            <div ng-click="listsController.gotoList(list.name)">{{::list.name}}</div>
+            <ion-option-button class="button-info"
+                               ng-click="listsController.lists.$remove(list)">
+                löschen
+            </ion-option-button>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

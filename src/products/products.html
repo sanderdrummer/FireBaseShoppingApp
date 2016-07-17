@@ -1,23 +1,46 @@
-<form class="flex" ng-if="showAmount" name="addProductToListForm" ng-submit="addProductToList(selectedProduct, selectedProductAmount)">
-    <div ng-if="selectedProductAmount">
-        {{selectedProduct.name}} - {{selectedProductAmount}} mal zur Liste
-    </div>
-    <input class="grow" required id="productAmount" type="text" ng-model="selectedProductAmount" placeholder="Anzahl hinzufügen" type="text"/><button type="submit"> HINZUFÜGEN</button>
-</form>
-<form class="flex" name="addProduct" ng-submit="addProduct()">
-    <input
-        required
-        id="productName"
-        class="grow"
-        ng-model="newProductName"
-        ng-change="filterProducts(newProductName)"
-        placeholder="Produkt hinzufügen"
-        type="text"/>
-        <button type="submit"> HINZUFÜGEN</button>
-</form>
-
-<ul>
-    <li  class="pointer p-s b-b" ng-click="selectProduct(product)" ng-repeat="product in filteredProducts | limitTo:15 track by product.$id ">
-        {{product.name}}
-    </li>
-</ul>
+    <ion-item ng-click="productsController.back()">
+    zurück
+</ion-item>
+    <form name="addProduct" ng-submit="productsController.addProduct()">
+        <div class="list">
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input  type="text"
+                        required
+                        id="productName"
+                        class="grow"
+                        ng-model-options="{ debounce: 300 }"
+                        ng-model="productsController.newProductName"
+                        ng-change="productsController.filterProducts(productsController.newProductName)"
+                        placeholder="Produkt hinzufügen" />
+            </label>
+        </div>
+    </form>
+    <form ng-if="productsController.showAmount" name="addProductToListForm" ng-submit="productsController.addProductToList(productsController.selectedProduct, productsController.selectedProductAmount)">
+        <div class="list">
+            <label class="item item-input">
+                <i class="icon ion-add placeholder-icon"></i>
+                <input required id="productAmount" ng-model="productsController.selectedProductAmount" placeholder="Anzahl hinzufügen" type="text"/>
+            </label>
+        </div>
+        <ion-item ng-if="productsController.selectedProductAmount">
+            {{productsController.selectedProduct.name}} - {{productsController.selectedProductAmount}} mal zur Liste
+        </ion-item>
+    </form>
+<ion-content>
+    <ion-list can-swipe="true">
+        <div class="item">
+            ...
+        </div>
+        <div class="item">
+            ...
+        </div>
+        <ion-item ng-click="productsController.selectProduct(product)" ng-repeat="product in productsController.filteredProducts | limitTo:20 track by product.$id"
+            class="item-button-right">
+            {{product.name}}
+            <ion-option-button class="button-negative" ng-click="productsController.products.$remove(product)">
+                <i class="icon ion-android-delete"></i>
+            </ion-option-button>
+        </ion-item>
+    </ion-list>
+</ion-content>

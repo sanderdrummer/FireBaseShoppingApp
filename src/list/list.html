@@ -1,30 +1,53 @@
-<h1> {{list.$id}}</h1>
-<button ng-click="toggleProducts()">Produkte zur Liste</button>
-<h2 class="b-b">noch in den korb</h2>
-<ul>
-    <li ng-repeat="item in list.toAdd">
-        <div class="p-s pointer" ng-click="addToBasket(item, $index)">
-            {{item.product.name}} {{item.amount}}
+<ion-content>
+    <ion-list can-swipe="true">
+        <ion-item>
+            <div ng-click="listController.home()"> zurück </div>
+        </ion-item>
+        <div  class="item item-input-inset">
+            <h1 class="title">{{listController.list.name}}</h1>
         </div>
-    </li>
-</ul>
-<h2 class="b-b">schon dabei</h2>
-<ul>
-    <li ng-repeat="item in list.alreadyAdded">
-        <div class="p-s pointer" ng-click="removeFromBasket(item, $index)">
-            {{item.product.name}} {{item.amount}}
+        <ion-item>
+            <div ng-click="listController.toggleProducts()">Produkte zur Liste</div>
+        </ion-item>
+        <div class="item item-divider">
+            noch in den korb
         </div>
-    </li>
-</ul>
-<div class="flex m-b-1">
-    <a href="" class="p b grow" ng-click="clearItems()">Liste Leeren</a>
-</div>
-<div class="flex m-b-1">
-    <a href="" class="p b grow" ng-click="destroyList()">Liste löschen</a>
-</div>
-<div class="products p" ng-if="showProducts">
-    <div class="flex m-b-1">
-        <a href="" class="p b grow" ng-click="toggleProducts()">Fertig</a>
-    </div>
-    <products></products>
-</div>
+        <ion-item ng-repeat="item in listController.list.items.toAdd">
+            <div ng-click="listController.list.addToBasket(item, $index)">
+                {{item.product.name}} {{item.amount}}
+            </div>
+            <ion-option-button class="button-info" ng-click="listController.list.clearSingle($index, 'toAdd')">
+                löschen
+            </ion-option-button>
+        </ion-item>
+
+
+        <div class="item item-divider">
+            schon dabei
+        </div>
+        <ion-item ng-repeat="item in listController.list.items.alreadyAdded">
+            <div ng-click="listController.list.removeFromBasket(item, $index)">
+                {{item.product.name}} {{item.amount}}
+            </div>
+            <ion-option-button class="button-info" ng-click="listController.list.clearSingle($index, 'alreadyAdded')">
+                löschen
+            </ion-option-button>
+        </ion-item>
+        <div class="item item-divider">
+            Optionen
+        </div>
+        <ion-item>
+            <div ng-click="listController.list.clearProducts()">Liste Leeren</div>
+        </ion-item>
+        <ion-item>
+            <div ng-click="listController.list.destroyList()">Liste löschen</div>
+        </ion-item>
+        <div class="item item-divider">
+        </div>
+        <div class="item item-divider">
+        </div>
+    </ion-list>
+</ion-content>
+
+
+
